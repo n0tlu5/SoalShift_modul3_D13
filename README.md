@@ -103,8 +103,9 @@ Buat program yang mensimulasikan kelakuan Agmal dan Iraj.
 [Source Code](/soal3/soal3.c)
 
 ### Langkah :
-- Buat thread untuk menghandle behavior milik Agmal
-- Buat thread untuk menghandle behavior milik Iraj
+- Buat thread untuk menghandle behavior milik Agmal.
+- Buat thread untuk menghandle behavior milik Iraj.
+- Buat thread sebagai timer disable fitur.
 - Buat loop untuk untuk menghandle input user.
 
 ## soal 4 <a name="soal_4"></a>
