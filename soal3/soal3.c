@@ -54,7 +54,7 @@ void* iraj(void *arg){
             continue;
         else{
             sc++;
-            Spirit_status-=10;
+            Spirit_status-=20;
             if(sc==3){
                 memset(buffer, 0, 1000);
                 strcpy(buffer,"Agmal Ayo Bangun disabled 10 s");

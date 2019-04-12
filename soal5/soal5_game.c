@@ -57,21 +57,18 @@ int main(){
 
     changemode(1);
     while(1){
-        if(hunger<=0){
-            printf("%s died starving\n", monstername);
-        }
-        if(hygine<=0){
-            printf("%s died due to illness\n", monstername);
-        }
         while(!kbhit());
         ch = getchar();
         if(curscene==0){
             if(ch=='1'){
-                if(myfood){
-                    hunger+=15;
-                    myfood--;
-                }else{
-                    puts("insufficient food");
+                if(hunger<200){
+                    if(myfood){
+                        hunger+=15;
+                        if(hunger>200) hunger=200;
+                        myfood--;
+                    }else{
+                        puts("insufficient food");
+                    }
                 }
             }else if(ch=='2'){
                 if(bathcd<=0){
@@ -81,10 +78,12 @@ int main(){
                     puts("bath is in cooldown");
                 }
             }else if(ch=='3'){
+                ehealth=100;
                 curscene=1;
             }else if(ch=='4'){
                 curscene=2;
             }else if(ch=='5'){
+                changemode(0);
                 exit(0);
             }
         }else if(curscene==1){
@@ -142,6 +141,12 @@ void* meta1(void *arg){
     while(1){
         if(curscene==1) continue;
         hygine-=10;
+        // if(hygine<0) hygine=0;
+        if(hygine<=0){
+            printf("%s died due to illness\n", monstername);
+            changemode(0);
+            exit(0);
+        }
         sleep(30);
     }
 }
@@ -150,6 +155,12 @@ void* meta2(void *arg){
     while(1){
         if(curscene==1) continue;
         hunger-=5;
+        // if(hunger<0) hunger=0;
+        if(hunger<=0){
+            printf("%s died starving\n", monstername);
+            changemode(0);
+            exit(0);
+        }
         sleep(10);
     }
 }
